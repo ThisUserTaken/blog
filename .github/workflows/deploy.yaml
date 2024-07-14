@@ -24,8 +24,8 @@ jobs:
 
       - name: Setup Hugo
         run: |
-          curl -L -o /tmp/hugo.tar.gz 'https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.128.2_linux-amd64.deb'
-          tar -C ${RUNNER_TEMP} -zxvf /tmp/hugo.tar.gz hugo          
+          curl -L -o /tmp/hugo.deb 'https://github.com/gohugoio/hugo/releases/download/v0.128.2/hugo_0.128.2_linux-amd64.deb'
+          sudo dpkg -i /tmp/hugo.deb      
       - name: Build
         run: ${RUNNER_TEMP}/hugo
 
