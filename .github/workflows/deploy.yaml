@@ -27,7 +27,7 @@ jobs:
           curl -L -o /tmp/hugo.deb 'https://github.com/gohugoio/hugo/releases/download/v0.128.2/hugo_0.128.2_linux-amd64.deb'
           sudo dpkg -i /tmp/hugo.deb      
       - name: Build
-        run: ${RUNNER_TEMP}/hugo
+        run: hugo --minify
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
