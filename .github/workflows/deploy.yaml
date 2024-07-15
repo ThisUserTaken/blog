@@ -12,7 +12,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
         with:
-          submodules: true  # Ensure submodules are checked out
+          submodules: true
 
       - name: Checkout destination
         uses: actions/checkout@v3
@@ -23,22 +23,18 @@ jobs:
 
       - name: Setup Hugo
         run: |
-          curl -L -o /tmp/hugo.deb 'https://github.com/gohugoio/hugo/releases/download/v0.112.4/hugo_extended_0.112.4_linux-amd64.deb'
-          sudo dpkg -i /tmp/hugo.deb
-          hugo version
-
+          curl -L -o /tmp/hugo.tar.gz 'https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-amd64.tar.gz'
+          tar -C ${RUNNER_TEMP} -zxvf /tmp/hugo.tar.gz hugo          
       - name: Build
-        run: hugo --minify
-
-
+        run: ${RUNNER_TEMP}/hugo
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         run: |
-          cp -R public/* built-site/
-          cd built-site
+          cp -R public/* ${GITHUB_WORKSPACE}/built-site/
+          cd ${GITHUB_WORKSPACE}/built-site
           git add .
           git config user.name 'ThisUserTaken'
           git config user.email 'hirunadf@gmail.com'
           git commit -m 'Updated site'
-          git push
+          git push          
