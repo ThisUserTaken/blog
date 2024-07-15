@@ -1,5 +1,4 @@
 baseURL: "https://ThisUserTaken.github.io/blog-demo/"
-languageCode: en-us
-title: My New Hugo Site
-theme: PaperMod
-ignoreErrors: ["error-remote-getjson"]
+languageCode: "en-us"
+title: "My New Hugo Site"
+theme: "PaperMod"
